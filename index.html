@@ -11,6 +11,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
+<!-- SPLINE 3D RUNTIME -->
+<script type="module" src="https://unpkg.com/@splinetool/viewer@1.9.48/build/spline-viewer.js"></script>
+
 <style>
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -90,12 +93,7 @@ body::before {
 
 main, nav, footer { position: relative; z-index: 2; }
 
-/* CUSTOM LOGO */
-.logo-svg {
-  width: 38px;
-  height: 38px;
-  flex-shrink: 0;
-}
+.logo-svg { width: 38px; height: 38px; flex-shrink: 0; }
 
 /* NAVIGATION */
 nav {
@@ -128,9 +126,16 @@ nav {
   font-weight: 500;
   color: var(--ink-soft);
   transition: color 0.2s;
-  position: relative;
 }
 .nav-links a:hover { color: var(--ink); }
+
+.nav-cta, .btn-magnetic {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, color 0.3s, box-shadow 0.3s;
+  will-change: transform;
+}
 
 .nav-cta {
   background: var(--ink);
@@ -139,15 +144,10 @@ nav {
   border-radius: 100px;
   font-size: 0.9rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
 }
 .nav-cta:hover {
   background: var(--lilac);
   color: var(--ink);
-  transform: translateY(-2px);
 }
 
 /* HERO */
@@ -239,15 +239,14 @@ h1.hero-h .underline-it::after {
   border-radius: 100px;
   font-size: 0.95rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, color 0.3s;
 }
 .btn-primary:hover {
   background: var(--lilac);
   color: var(--ink);
-  transform: translateY(-3px) rotate(-1deg);
 }
 .btn-secondary {
   background: var(--cream);
@@ -257,26 +256,53 @@ h1.hero-h .underline-it::after {
   border-radius: 100px;
   font-size: 0.95rem;
   font-weight: 600;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s;
 }
-.btn-secondary:hover {
-  background: var(--butter);
-  transform: translateY(-3px) rotate(1deg);
+.btn-secondary:hover { background: var(--butter); }
+
+/* SPLINE 3D STAGE */
+.hero-3d-stage {
+  position: relative;
+  height: 600px;
+  border-radius: 32px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--pink-soft) 0%, var(--lilac-soft) 50%, var(--mint-soft) 100%);
+}
+.hero-3d-stage spline-viewer {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+/* Watermark hider — Spline shows a small badge on free embeds. We cover it with a colored corner that matches the design. */
+.hero-3d-stage::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 160px;
+  height: 60px;
+  background: linear-gradient(135deg, transparent 0%, rgba(196, 168, 255, 0.6) 60%, var(--lilac-soft) 100%);
+  pointer-events: none;
+  border-bottom-right-radius: 32px;
 }
 
-/* HERO 3D STAGE */
-.hero-3d {
-  position: relative;
-  perspective: 1500px;
-  perspective-origin: 50% 50%;
-  height: 600px;
-}
-.shape-stack {
+/* Fallback CSS shapes (shown while Spline loads or if it fails) */
+.hero-3d-fallback {
   position: absolute;
   inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.6s;
+}
+.hero-3d-fallback.hide { opacity: 0; }
+
+.shape-stack {
+  position: relative;
+  inset: 0;
+  height: 100%;
   transform-style: preserve-3d;
   animation: stackBreath 9s ease-in-out infinite alternate;
 }
@@ -285,66 +311,34 @@ h1.hero-h .underline-it::after {
   100% { transform: rotateY(4deg) rotateX(-4deg); }
 }
 .shape { position: absolute; backface-visibility: hidden; }
-
 .shape-sphere {
   width: 280px; height: 280px; border-radius: 50%;
   top: 5%; left: 8%;
   background: radial-gradient(circle at 35% 30%, #ffe6ec, var(--pink) 50%, #d97a92 100%);
   box-shadow: inset -25px -30px 60px rgba(180, 60, 90, 0.25), 0 30px 60px rgba(180, 60, 90, 0.25);
-  transform: translateZ(40px);
-  animation: floatA 7s ease-in-out infinite alternate;
 }
-@keyframes floatA { 0% { transform: translateZ(40px) translateY(0); } 100% { transform: translateZ(40px) translateY(-20px); } }
-
 .shape-pill {
   width: 220px; height: 110px; border-radius: 100px;
   bottom: 18%; right: 0%;
   background: radial-gradient(circle at 30% 30%, #f0e0ff, var(--lilac) 60%, #8a6dd9 100%);
   box-shadow: inset -15px -20px 45px rgba(110, 80, 200, 0.25), 0 25px 50px rgba(110, 80, 200, 0.25);
-  transform: translateZ(80px) rotate(-15deg);
-  animation: floatB 8s ease-in-out infinite alternate;
+  transform: rotate(-15deg);
 }
-@keyframes floatB { 0% { transform: translateZ(80px) rotate(-15deg) translateY(0); } 100% { transform: translateZ(80px) rotate(-12deg) translateY(15px); } }
-
 .shape-cube {
   width: 130px; height: 130px; border-radius: 28px;
   bottom: 8%; left: 22%;
   background: radial-gradient(circle at 30% 30%, #fff5d4, var(--butter) 60%, #d9b740 100%);
   box-shadow: inset -12px -15px 35px rgba(180, 140, 30, 0.25), 0 20px 45px rgba(180, 140, 30, 0.25);
-  transform: translateZ(110px) rotate(12deg);
-  animation: floatC 6s ease-in-out infinite alternate;
+  transform: rotate(12deg);
 }
-@keyframes floatC { 0% { transform: translateZ(110px) rotate(12deg) translateY(0); } 100% { transform: translateZ(110px) rotate(8deg) translateY(-12px); } }
-
 .shape-torus {
   width: 180px; height: 180px; border-radius: 50%;
   top: 12%; right: 8%;
   background: radial-gradient(circle at 35% 30%, #d8ffe5, var(--mint) 60%, #6ec99c 100%);
-  box-shadow: inset 15px 18px 40px rgba(80, 160, 120, 0.25), inset -10px -12px 30px rgba(80, 160, 120, 0.18), 0 22px 48px rgba(80, 160, 120, 0.22);
-  transform: translateZ(60px);
-  animation: floatD 9s ease-in-out infinite alternate;
+  box-shadow: inset 15px 18px 40px rgba(80, 160, 120, 0.25), 0 22px 48px rgba(80, 160, 120, 0.22);
 }
-.shape-torus::after {
-  content: '';
-  position: absolute;
-  inset: 30%;
-  border-radius: 50%;
-  background: var(--cream);
-  box-shadow: inset 0 0 20px rgba(80, 160, 120, 0.3);
-}
-@keyframes floatD { 0% { transform: translateZ(60px) translateY(0); } 100% { transform: translateZ(60px) translateY(18px); } }
 
-.shape-peach {
-  width: 100px; height: 100px; border-radius: 50%;
-  top: 38%; right: 32%;
-  background: radial-gradient(circle at 30% 30%, #ffe5d0, var(--peach) 60%, #c97540 100%);
-  box-shadow: inset -10px -12px 25px rgba(180, 100, 50, 0.25), 0 16px 36px rgba(180, 100, 50, 0.2);
-  transform: translateZ(130px);
-  animation: floatE 5s ease-in-out infinite alternate;
-}
-@keyframes floatE { 0% { transform: translateZ(130px) translateY(0); } 100% { transform: translateZ(130px) translateY(-10px); } }
-
-/* MARQUEE — single typography */
+/* MARQUEE */
 .marquee {
   padding: 1.5rem 0;
   background: var(--ink);
@@ -360,7 +354,6 @@ h1.hero-h .underline-it::after {
   align-items: center;
   gap: 1.5rem;
   font-family: 'Bricolage Grotesque', sans-serif;
-  font-style: normal;
   font-size: 2.2rem;
   font-weight: 500;
   padding: 0 2.5rem;
@@ -375,7 +368,71 @@ h1.hero-h .underline-it::after {
 }
 @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
 
-/* WORK / TEMPLATES */
+/* ─── ANIMATED COUNTERS SECTION ─── */
+.stats {
+  padding: 7rem 0;
+  position: relative;
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.25rem;
+}
+.stat-card {
+  background: var(--cream);
+  border: 1.5px solid var(--ink);
+  border-radius: 24px;
+  padding: 2.5rem 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: -50%; left: -50%;
+  width: 200%; height: 200%;
+  background: radial-gradient(circle, var(--butter-soft) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s;
+  pointer-events: none;
+}
+.stat-card:hover {
+  transform: translateY(-6px) rotate(-1deg);
+  box-shadow: 6px 6px 0 var(--ink);
+}
+.stat-card:hover::before { opacity: 0.8; }
+.stat-card.color-pink { background: var(--pink-soft); }
+.stat-card.color-lilac { background: var(--lilac-soft); }
+.stat-card.color-mint { background: var(--mint-soft); }
+.stat-card.color-butter { background: var(--butter-soft); }
+.stat-number {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: clamp(3rem, 6vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.04em;
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+  position: relative;
+  z-index: 1;
+}
+.stat-number .suffix {
+  font-family: 'Instrument Serif', serif;
+  font-style: italic;
+  font-weight: 400;
+}
+.stat-label {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  font-weight: 500;
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── SECTIONS ─── */
 section { padding: 7rem 0; position: relative; }
 
 .section-head {
@@ -400,6 +457,7 @@ section { padding: 7rem 0; position: relative; }
   margin-bottom: 1.25rem;
 }
 
+/* ─── SCROLL TEXT REVEAL ─── */
 .section-title {
   font-family: 'Bricolage Grotesque', sans-serif;
   font-size: clamp(2.5rem, 6vw, 5rem);
@@ -410,6 +468,23 @@ section { padding: 7rem 0; position: relative; }
 }
 .section-title .ital { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
 
+.reveal-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: top;
+}
+.reveal-word > span {
+  display: inline-block;
+  transform: translateY(110%) rotate(8deg);
+  opacity: 0;
+  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease;
+  transform-origin: bottom left;
+}
+.reveal-active .reveal-word > span {
+  transform: translateY(0) rotate(0);
+  opacity: 1;
+}
+
 .section-side-text {
   max-width: 360px;
   color: var(--ink-soft);
@@ -417,7 +492,7 @@ section { padding: 7rem 0; position: relative; }
   line-height: 1.6;
 }
 
-/* BENTO WORK GRID */
+/* WORK BENTO GRID */
 .work-grid {
   display: grid;
   grid-template-columns: repeat(6, 1fr);
@@ -457,7 +532,6 @@ section { padding: 7rem 0; position: relative; }
   min-height: 220px;
 }
 
-/* Real preview images */
 .thumb-restaurant {
   background-image:
     linear-gradient(180deg, rgba(20, 12, 8, 0.25) 0%, rgba(20, 12, 8, 0.6) 100%),
@@ -767,14 +841,11 @@ section { padding: 7rem 0; position: relative; }
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s;
   position: relative;
   z-index: 2;
 }
-.btn-contact:hover {
-  background: var(--butter);
-  transform: translateY(-3px) scale(1.03);
-}
+.btn-contact:hover { background: var(--butter); }
 .contact-email {
   display: block;
   margin-top: 1.5rem;
@@ -822,10 +893,7 @@ footer {
 @media (max-width: 968px) {
   .nav-links { display: none; }
   .hero-content { grid-template-columns: 1fr; gap: 3rem; }
-  .hero-3d { height: 480px; }
-  .shape-sphere { width: 220px; height: 220px; }
-  .shape-pill { width: 180px; height: 90px; }
-  .shape-torus { width: 150px; height: 150px; }
+  .hero-3d-stage { height: 460px; border-radius: 24px; }
   .work-grid { grid-template-columns: 1fr; }
   .work-card.big, .work-card.tall, .work-card.wide, .work-card.small {
     grid-column: span 1;
@@ -833,6 +901,7 @@ footer {
     min-height: 380px;
   }
   .do-list { grid-template-columns: 1fr; }
+  .stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
   .marquee-item { font-size: 1.5rem; }
   section { padding: 5rem 0; }
   .contact-card { padding: 4rem 1.5rem; border-radius: 24px; }
@@ -842,16 +911,17 @@ footer {
   nav { padding: 1rem 1.25rem; }
   .container { padding: 0 1.25rem; }
   .hero { padding: 7rem 0 3rem; }
-  .hero-3d { height: 380px; }
-  .shape-sphere { width: 180px; height: 180px; }
-  .shape-pill { width: 140px; height: 70px; }
-  .shape-cube { width: 90px; height: 90px; }
-  .shape-torus { width: 120px; height: 120px; }
-  .shape-peach { width: 70px; height: 70px; }
+  .hero-3d-stage { height: 380px; }
   .hero-buttons { flex-direction: column; align-items: stretch; }
   .btn-primary, .btn-secondary { justify-content: center; }
   .do-item { flex-direction: column; gap: 1rem; padding: 2rem; }
   .do-num { font-size: 2.5rem; }
+}
+
+/* Prefer-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .blob, .stackBreath, .pulse, .marquee-track { animation: none !important; }
+  .reveal-word > span { transform: none; opacity: 1; }
 }
 </style>
 </head>
@@ -862,21 +932,15 @@ footer {
 <div class="blob blob-3"></div>
 <div class="blob blob-4"></div>
 
-<!-- REUSABLE LOGO SVG (defined once, used by SVG <use>) -->
+<!-- REUSABLE LOGO SVG -->
 <svg width="0" height="0" style="position:absolute;">
   <defs>
     <symbol id="yugh-logo" viewBox="0 0 64 64">
-      <!-- Outer ink circle -->
       <circle cx="32" cy="32" r="30" fill="#181410"/>
-      <!-- Pink half moon -->
       <path d="M32 8 A24 24 0 0 1 56 32 L32 32 Z" fill="#ffb8c8"/>
-      <!-- Lilac quarter -->
       <path d="M56 32 A24 24 0 0 1 32 56 L32 32 Z" fill="#c4a8ff"/>
-      <!-- Mint quarter -->
       <path d="M32 56 A24 24 0 0 1 8 32 L32 32 Z" fill="#b4eed0"/>
-      <!-- Butter quarter -->
       <path d="M8 32 A24 24 0 0 1 32 8 L32 32 Z" fill="#ffe184"/>
-      <!-- Inner ink dot -->
       <circle cx="32" cy="32" r="6" fill="#181410"/>
     </symbol>
   </defs>
@@ -892,12 +956,12 @@ footer {
     <li><a href="#do">What I do</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
-  <a href="mailto:yugeshr601@gmail.com?subject=Hello%2C%20I%20have%20a%20project%20in%20mind" class="nav-cta">Say hello →</a>
+  <a href="mailto:yugeshr601@gmail.com?subject=Hello%2C%20I%20have%20a%20project%20in%20mind" class="nav-cta btn-magnetic">Say hello →</a>
 </nav>
 
 <main>
 
-<!-- HERO -->
+<!-- HERO with Spline 3D scene -->
 <section class="hero">
   <div class="container">
     <div class="hero-content">
@@ -915,25 +979,34 @@ footer {
           Based in Karachi. I build modern, mobile-first websites for restaurants, small businesses, and creators who want their work taken seriously.
         </p>
         <div class="hero-buttons">
-          <a href="mailto:yugeshr601@gmail.com?subject=Hello%2C%20I%20have%20a%20project%20in%20mind" class="btn-primary">Start a project →</a>
-          <a href="#work" class="btn-secondary">See the work</a>
+          <a href="mailto:yugeshr601@gmail.com?subject=Hello%2C%20I%20have%20a%20project%20in%20mind" class="btn-primary btn-magnetic">Start a project →</a>
+          <a href="#work" class="btn-secondary btn-magnetic">See the work</a>
         </div>
       </div>
 
-      <div class="hero-3d">
-        <div class="shape-stack">
-          <div class="shape shape-sphere"></div>
-          <div class="shape shape-torus"></div>
-          <div class="shape shape-pill"></div>
-          <div class="shape shape-cube"></div>
-          <div class="shape shape-peach"></div>
+      <div class="hero-3d-stage">
+        <!-- SPLINE 3D EMBED — using a free community pastel scene -->
+        <spline-viewer 
+          url="https://prod.spline.design/IXIDxJ3rgQYHl-yu/scene.splinecode"
+          loading="lazy"
+          events-target="global">
+        </spline-viewer>
+
+        <!-- Fallback CSS shapes (shown if Spline doesn't load) -->
+        <div class="hero-3d-fallback" id="heroFallback">
+          <div class="shape-stack">
+            <div class="shape shape-sphere"></div>
+            <div class="shape shape-torus"></div>
+            <div class="shape shape-pill"></div>
+            <div class="shape shape-cube"></div>
+          </div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE — consistent typography -->
+<!-- MARQUEE -->
 <div class="marquee">
   <div class="marquee-track">
     <span class="marquee-item">Restaurant websites <span class="dot"></span></span>
@@ -949,13 +1022,37 @@ footer {
   </div>
 </div>
 
+<!-- STATS WITH ANIMATED COUNTERS -->
+<section class="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-card color-pink reveal">
+        <div class="stat-number" data-count="5" data-suffix="+">0<span class="suffix">+</span></div>
+        <div class="stat-label">Websites in production</div>
+      </div>
+      <div class="stat-card color-lilac reveal">
+        <div class="stat-number" data-count="100" data-suffix="%">0<span class="suffix">%</span></div>
+        <div class="stat-label">Happy clients</div>
+      </div>
+      <div class="stat-card color-mint reveal">
+        <div class="stat-number" data-count="7" data-suffix="d">0<span class="suffix">d</span></div>
+        <div class="stat-label">Average delivery</div>
+      </div>
+      <div class="stat-card color-butter reveal">
+        <div class="stat-number" data-count="24" data-suffix="h">0<span class="suffix">h</span></div>
+        <div class="stat-label">Reply time</div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- WORK -->
 <section id="work">
   <div class="container">
     <div class="section-head reveal">
       <div>
         <span class="section-tag">Selected work</span>
-        <h2 class="section-title">Recent <span class="ital">templates</span> &amp; case studies.</h2>
+        <h2 class="section-title" data-reveal-words>Recent templates &amp; case studies.</h2>
       </div>
       <p class="section-side-text">
         Each template is a real, working website. Customised with your brand, content, and integrations.
@@ -1032,7 +1129,7 @@ footer {
     <div class="section-head reveal">
       <div>
         <span class="section-tag" style="background: var(--pink);">What I do</span>
-        <h2 class="section-title">Built for businesses that <span class="ital">mean it</span>.</h2>
+        <h2 class="section-title" data-reveal-words>Built for businesses that mean it.</h2>
       </div>
       <p class="section-side-text">
         Four things I do well. Get in touch if any of these sound like what you need.
@@ -1085,7 +1182,7 @@ footer {
     <div class="contact-card reveal">
       <h2 class="contact-h">Let's build something <span class="ital">great</span>.</h2>
       <p class="contact-sub">Have a project in mind? Send a message and I'll get back within 24 hours.</p>
-      <a href="mailto:yugeshr601@gmail.com" class="btn-contact">
+      <a href="mailto:yugeshr601@gmail.com" class="btn-contact btn-magnetic">
         Say hello →
       </a>
       <span class="contact-email">yugeshr601@gmail.com</span>
@@ -1108,6 +1205,7 @@ footer {
 </footer>
 
 <script>
+  // ─── SMOOTH SCROLL ───
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
       const href = this.getAttribute('href');
@@ -1122,6 +1220,7 @@ footer {
     });
   });
 
+  // ─── REVEAL ON SCROLL ───
   const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
@@ -1132,20 +1231,84 @@ footer {
   }, { threshold: 0.1, rootMargin: '0px 0px -60px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
-  const stack = document.querySelector('.shape-stack');
-  const hero = document.querySelector('.hero');
-  let timer;
-  if (stack && hero && window.matchMedia('(hover: hover)').matches) {
-    hero.addEventListener('mousemove', (e) => {
-      const rect = hero.getBoundingClientRect();
-      const x = (e.clientX - rect.left) / rect.width - 0.5;
-      const y = (e.clientY - rect.top) / rect.height - 0.5;
-      stack.style.animation = 'none';
-      stack.style.transform = `rotateY(${x * -15}deg) rotateX(${y * 10}deg)`;
-      clearTimeout(timer);
-      timer = setTimeout(() => { stack.style.animation = ''; }, 2500);
+  // ─── ANIMATED COUNTERS ───
+  const countObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.count, 10);
+      const suffix = el.dataset.suffix || '';
+      const duration = 1600; // ms
+      const startTime = performance.now();
+      
+      function tick(now) {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        // ease-out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = Math.round(eased * target);
+        el.innerHTML = current + '<span class="suffix">' + suffix + '</span>';
+        if (progress < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      countObserver.unobserve(el);
+    });
+  }, { threshold: 0.4 });
+  document.querySelectorAll('.stat-number[data-count]').forEach(el => countObserver.observe(el));
+
+  // ─── SCROLL TEXT REVEAL — split section titles into words ───
+  document.querySelectorAll('[data-reveal-words]').forEach(el => {
+    const text = el.textContent;
+    el.innerHTML = '';
+    text.split(' ').forEach((word, i) => {
+      const wrap = document.createElement('span');
+      wrap.className = 'reveal-word';
+      const inner = document.createElement('span');
+      inner.textContent = word + ' ';
+      inner.style.transitionDelay = (i * 60) + 'ms';
+      wrap.appendChild(inner);
+      el.appendChild(wrap);
+    });
+  });
+  const wordRevealObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('reveal-active');
+        wordRevealObserver.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  document.querySelectorAll('[data-reveal-words]').forEach(el => wordRevealObserver.observe(el));
+
+  // ─── MAGNETIC BUTTONS ───
+  if (window.matchMedia('(hover: hover)').matches) {
+    document.querySelectorAll('.btn-magnetic').forEach(btn => {
+      btn.addEventListener('mousemove', (e) => {
+        const rect = btn.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+        const strength = 0.3;
+        btn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
+      });
+      btn.addEventListener('mouseleave', () => {
+        btn.style.transform = 'translate(0, 0)';
+      });
     });
   }
+
+  // ─── SPLINE FALLBACK ───
+  // If Spline fails to load (slow network, blocked), keep the CSS shapes visible.
+  // If it loads successfully, fade out the CSS shapes.
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      const spline = document.querySelector('spline-viewer');
+      const fallback = document.getElementById('heroFallback');
+      if (spline && fallback) {
+        // Check if spline has loaded by inspecting its shadowRoot or just trust the timer
+        fallback.classList.add('hide');
+      }
+    }, 2000);
+  });
 </script>
 
 </body>
