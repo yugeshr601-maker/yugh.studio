@@ -3,1367 +3,771 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Yugh Studio — Designer & Developer in Karachi</title>
-<meta name="description" content="Yugh Studio designs and builds modern websites for restaurants, businesses, and creators in Karachi.">
-<meta name="theme-color" content="#fef9f0">
+<title>Yugh Studio — Digital Craft for the New Era</title>
+<meta name="description" content="Yugh Studio designs and builds modern, mobile-first websites for restaurants, small businesses, and creators in Karachi.">
+<meta name="theme-color" content="#fff8f4">
 
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=Instrument+Serif:ital@0;1&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;600;700;800&family=Hanken+Grotesk:wght@300;400;500;600&family=Libre+Caslon+Text:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
 
-<!-- Spline 3D scene is embedded via iframe in the hero section -->
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        "primary": "#854e5c",
+        "on-primary": "#ffffff",
+        "primary-container": "#ffb8c8",
+        "primary-fixed": "#ffd9e0",
+        "primary-fixed-dim": "#fab3c3",
+        "on-primary-container": "#7b4553",
+        "on-primary-fixed": "#360d1a",
+        "on-primary-fixed-variant": "#6a3745",
+        "secondary": "#69509f",
+        "on-secondary": "#ffffff",
+        "secondary-container": "#c4a8ff",
+        "secondary-fixed": "#eaddff",
+        "secondary-fixed-dim": "#d2bcff",
+        "on-secondary-container": "#523886",
+        "tertiary": "#326851",
+        "on-tertiary": "#ffffff",
+        "tertiary-container": "#9ed7ba",
+        "tertiary-fixed": "#b5efd1",
+        "tertiary-fixed-dim": "#9ad3b6",
+        "on-tertiary-container": "#285f48",
+        "background": "#fff8f4",
+        "on-background": "#1f1b17",
+        "surface": "#fff8f4",
+        "surface-container-lowest": "#ffffff",
+        "surface-container-low": "#fcf2ea",
+        "surface-container": "#f6ece5",
+        "surface-container-high": "#f0e6df",
+        "surface-container-highest": "#eae1da",
+        "on-surface": "#1f1b17",
+        "on-surface-variant": "#514346",
+        "surface-variant": "#eae1da",
+        "outline": "#837376",
+        "outline-variant": "#d5c2c5",
+        "inverse-surface": "#342f2b",
+        "inverse-on-surface": "#f9efe8",
+        "inverse-primary": "#fab3c3"
+      },
+      borderRadius: { DEFAULT: "0.25rem", lg: "0.5rem", xl: "0.75rem", full: "9999px" },
+      spacing: {
+        "bento-gap": "24px",
+        "container-max": "1440px",
+        "margin-mobile": "20px",
+        "unit": "8px",
+        "gutter": "24px",
+        "margin-desktop": "64px"
+      },
+      fontFamily: {
+        "body-md": ["Hanken Grotesk"],
+        "headline-md": ["Bricolage Grotesque"],
+        "body-lg": ["Hanken Grotesk"],
+        "display-lg": ["Bricolage Grotesque"],
+        "label-caps": ["Hanken Grotesk"],
+        "display-lg-mobile": ["Bricolage Grotesque"],
+        "accent-italic": ["Libre Caslon Text"]
+      },
+      fontSize: {
+        "body-md": ["16px", { lineHeight: "1.6", fontWeight: "400" }],
+        "headline-md": ["40px", { lineHeight: "1.2", letterSpacing: "-0.02em", fontWeight: "700" }],
+        "body-lg": ["20px", { lineHeight: "1.6", fontWeight: "400" }],
+        "display-lg": ["80px", { lineHeight: "1.1", letterSpacing: "-0.04em", fontWeight: "800" }],
+        "label-caps": ["12px", { lineHeight: "1.0", letterSpacing: "0.1em", fontWeight: "600" }],
+        "display-lg-mobile": ["48px", { lineHeight: "1.1", letterSpacing: "-0.02em", fontWeight: "800" }],
+        "accent-italic": ["22px", { lineHeight: "1.4", fontWeight: "400" }]
+      }
+    }
+  }
+};
+</script>
 
 <style>
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --cream: #fef9f0;
-  --cream-soft: #faf3e6;
-  --ink: #181410;
-  --ink-soft: #4a4039;
-  --ink-mute: #8a7d6f;
-  --line: rgba(24, 20, 16, 0.1);
-  --line-strong: rgba(24, 20, 16, 0.18);
-
-  --pink: #ffb8c8;
-  --pink-soft: #ffd9e0;
-  --lilac: #c4a8ff;
-  --lilac-soft: #e0d0ff;
-  --mint: #b4eed0;
-  --mint-soft: #d8f5e6;
-  --butter: #ffe184;
-  --butter-soft: #fff0b8;
-  --peach: #ffb98a;
-  --peach-soft: #ffdab9;
-  --sky: #a8d8ff;
-  --sky-soft: #d0e8ff;
-}
-
-html { scroll-behavior: smooth; }
-
 body {
-  background: var(--cream);
-  color: var(--ink);
-  font-family: 'Inter Tight', sans-serif;
-  font-weight: 400;
-  line-height: 1.5;
+  background: #fff8f4;
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #1f1b17;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
+  background-image:
+    radial-gradient(at 0% 0%, rgba(255, 184, 200, 0.15) 0, transparent 50%),
+    radial-gradient(at 100% 100%, rgba(196, 168, 255, 0.15) 0, transparent 50%);
+  background-attachment: fixed;
 }
-
 a { color: inherit; text-decoration: none; }
-button { font-family: inherit; cursor: pointer; border: none; background: none; color: inherit; }
 
-.display { font-family: 'Bricolage Grotesque', sans-serif; letter-spacing: -0.04em; font-weight: 500; }
-.serif { font-family: 'Instrument Serif', serif; font-style: italic; }
-
-.container { max-width: 1280px; margin: 0 auto; padding: 0 2.5rem; position: relative; }
-
-/* BACKGROUND BLOBS */
-.blob {
-  position: fixed;
-  border-radius: 50%;
-  filter: blur(80px);
-  z-index: 0;
-  pointer-events: none;
-  opacity: 0.55;
-  animation: blobFloat 18s ease-in-out infinite alternate;
-}
-.blob-1 { top: -10%; right: -10%; width: 60vw; height: 60vw; background: var(--pink-soft); }
-.blob-2 { top: 30%; left: -15%; width: 50vw; height: 50vw; background: var(--lilac-soft); animation-delay: -6s; animation-duration: 24s; }
-.blob-3 { bottom: -20%; right: -5%; width: 55vw; height: 55vw; background: var(--mint-soft); animation-delay: -3s; animation-duration: 20s; }
-.blob-4 { bottom: 10%; left: 20%; width: 35vw; height: 35vw; background: var(--butter-soft); animation-delay: -9s; animation-duration: 28s; }
-@keyframes blobFloat {
-  0%   { transform: translate(0, 0) scale(1) rotate(0deg); }
-  50%  { transform: translate(40px, -30px) scale(1.1) rotate(20deg); }
-  100% { transform: translate(-30px, 40px) scale(0.95) rotate(-15deg); }
-}
-
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.5;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-}
-
-main, nav, footer { position: relative; z-index: 2; }
-
-.logo-svg { width: 38px; height: 38px; flex-shrink: 0; }
-
-/* NAVIGATION */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  padding: 1.25rem 2.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background: rgba(254, 249, 240, 0.7);
-  backdrop-filter: blur(20px) saturate(160%);
-  -webkit-backdrop-filter: blur(20px) saturate(160%);
-}
-.nav-logo {
-  display: flex;
-  align-items: center;
-  gap: 0.7rem;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.35rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-}
-.nav-logo-text em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
-
-.nav-links { display: flex; gap: 2rem; list-style: none; align-items: center; }
-.nav-links a {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-  transition: color 0.2s;
-}
-.nav-links a:hover { color: var(--ink); }
-
-.nav-cta, .btn-magnetic {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, color 0.3s, box-shadow 0.3s;
-  will-change: transform;
-}
-
-.nav-cta {
-  background: var(--ink);
-  color: var(--cream);
-  padding: 0.75rem 1.5rem;
-  border-radius: 100px;
-  font-size: 0.9rem;
-  font-weight: 600;
-}
-.nav-cta:hover {
-  background: var(--lilac);
-  color: var(--ink);
-}
-
-/* HERO */
-.hero {
-  min-height: 100vh;
-  padding: 9rem 0 4rem;
-  display: flex;
-  align-items: center;
-  position: relative;
-}
-.hero-content {
-  display: grid;
-  grid-template-columns: 1.1fr 1fr;
-  gap: 4rem;
-  align-items: center;
-}
-
-.hero-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  background: var(--mint);
-  color: var(--ink);
-  padding: 0.5rem 1rem;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  margin-bottom: 2rem;
-}
-.hero-tag-dot {
-  width: 8px;
-  height: 8px;
-  background: var(--ink);
-  border-radius: 50%;
-  animation: pulse 2s infinite;
-}
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
-}
-
-h1.hero-h {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(3.2rem, 8vw, 6.5rem);
-  line-height: 0.95;
-  letter-spacing: -0.045em;
-  font-weight: 500;
-  margin-bottom: 2rem;
-  color: var(--ink);
-}
-h1.hero-h .ital {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-h1.hero-h .underline-it {
-  position: relative;
-  display: inline-block;
-}
-h1.hero-h .underline-it::after {
-  content: '';
-  position: absolute;
-  bottom: 0.05em;
-  left: -0.1em;
-  right: -0.1em;
-  height: 0.35em;
-  background: var(--butter);
-  z-index: -1;
-  border-radius: 100px;
-  transform: rotate(-1deg);
-}
-
-.hero-sub {
-  font-size: 1.2rem;
-  color: var(--ink-soft);
-  max-width: 460px;
-  line-height: 1.6;
-  margin-bottom: 2.5rem;
-  font-weight: 400;
-}
-
-.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
-
-.btn-primary {
-  background: var(--ink);
-  color: var(--cream);
-  padding: 1.1rem 2rem;
-  border-radius: 100px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s, color 0.3s;
-}
-.btn-primary:hover {
-  background: var(--lilac);
-  color: var(--ink);
-}
-.btn-secondary {
-  background: var(--cream);
-  border: 1.5px solid var(--ink);
-  color: var(--ink);
-  padding: 1.1rem 2rem;
-  border-radius: 100px;
-  font-size: 0.95rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s;
-}
-.btn-secondary:hover { background: var(--butter); }
-
-/* SPLINE 3D STAGE */
-.hero-3d-stage {
-  position: relative;
-  height: 600px;
-  border-radius: 32px;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--pink-soft) 0%, var(--lilac-soft) 50%, var(--mint-soft) 100%);
-}
-.hero-3d-stage spline-viewer,
-.hero-3d-stage iframe {
-  width: 100%;
-  height: 100%;
-  display: block;
-  border: 0;
-  position: relative;
-  z-index: 2;
-}
-/* Watermark hider — Spline shows a small badge on free embeds. We cover it with a colored corner that matches the design. */
-.hero-3d-stage::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 160px;
-  height: 60px;
-  background: linear-gradient(135deg, transparent 0%, rgba(196, 168, 255, 0.6) 60%, var(--lilac-soft) 100%);
-  pointer-events: none;
-  border-bottom-right-radius: 32px;
-}
-
-/* Fallback CSS shapes (shown while Spline loads or if it fails) */
-.hero-3d-fallback {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  transition: opacity 0.6s;
-}
-.hero-3d-fallback.hide { opacity: 0; }
-
-.shape-stack {
-  position: relative;
-  inset: 0;
-  height: 100%;
-  transform-style: preserve-3d;
-  animation: stackBreath 9s ease-in-out infinite alternate;
-}
-@keyframes stackBreath {
-  0%   { transform: rotateY(-8deg) rotateX(6deg); }
-  100% { transform: rotateY(4deg) rotateX(-4deg); }
-}
-.shape { position: absolute; backface-visibility: hidden; }
-.shape-sphere {
-  width: 280px; height: 280px; border-radius: 50%;
-  top: 5%; left: 8%;
-  background: radial-gradient(circle at 35% 30%, #ffe6ec, var(--pink) 50%, #d97a92 100%);
-  box-shadow: inset -25px -30px 60px rgba(180, 60, 90, 0.25), 0 30px 60px rgba(180, 60, 90, 0.25);
-}
-.shape-pill {
-  width: 220px; height: 110px; border-radius: 100px;
-  bottom: 18%; right: 0%;
-  background: radial-gradient(circle at 30% 30%, #f0e0ff, var(--lilac) 60%, #8a6dd9 100%);
-  box-shadow: inset -15px -20px 45px rgba(110, 80, 200, 0.25), 0 25px 50px rgba(110, 80, 200, 0.25);
-  transform: rotate(-15deg);
-}
-.shape-cube {
-  width: 130px; height: 130px; border-radius: 28px;
-  bottom: 8%; left: 22%;
-  background: radial-gradient(circle at 30% 30%, #fff5d4, var(--butter) 60%, #d9b740 100%);
-  box-shadow: inset -12px -15px 35px rgba(180, 140, 30, 0.25), 0 20px 45px rgba(180, 140, 30, 0.25);
-  transform: rotate(12deg);
-}
-.shape-torus {
-  width: 180px; height: 180px; border-radius: 50%;
-  top: 12%; right: 8%;
-  background: radial-gradient(circle at 35% 30%, #d8ffe5, var(--mint) 60%, #6ec99c 100%);
-  box-shadow: inset 15px 18px 40px rgba(80, 160, 120, 0.25), 0 22px 48px rgba(80, 160, 120, 0.22);
-}
-
-/* MARQUEE */
-.marquee {
-  padding: 1.5rem 0;
-  background: var(--ink);
-  color: var(--cream);
-  overflow: hidden;
-  position: relative;
-  transform: rotate(-2deg);
-  margin: 4rem 0;
-}
-.marquee-track { display: flex; white-space: nowrap; animation: marquee 25s linear infinite; }
-.marquee-item {
-  display: inline-flex;
-  align-items: center;
-  gap: 1.5rem;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 2.2rem;
-  font-weight: 500;
-  padding: 0 2.5rem;
-  letter-spacing: -0.03em;
-}
-.marquee-item .dot {
-  display: inline-block;
-  width: 12px;
-  height: 12px;
-  background: var(--butter);
-  border-radius: 50%;
-}
-@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-
-/* ─── ANIMATED COUNTERS SECTION ─── */
-.stats {
-  padding: 7rem 0;
-  position: relative;
-}
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1.25rem;
-}
-.stat-card {
-  background: var(--cream);
-  border: 1.5px solid var(--ink);
-  border-radius: 24px;
-  padding: 2.5rem 1.5rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.stat-card::before {
-  content: '';
-  position: absolute;
-  top: -50%; left: -50%;
-  width: 200%; height: 200%;
-  background: radial-gradient(circle, var(--butter-soft) 0%, transparent 60%);
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
-}
-.stat-card:hover {
-  transform: translateY(-6px) rotate(-1deg);
-  box-shadow: 6px 6px 0 var(--ink);
-}
-.stat-card:hover::before { opacity: 0.8; }
-.stat-card.color-pink { background: var(--pink-soft); }
-.stat-card.color-lilac { background: var(--lilac-soft); }
-.stat-card.color-mint { background: var(--mint-soft); }
-.stat-card.color-butter { background: var(--butter-soft); }
-.stat-number {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(3rem, 6vw, 5rem);
-  line-height: 1;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  color: var(--ink);
-  margin-bottom: 0.5rem;
-  position: relative;
-  z-index: 1;
-}
-.stat-number .suffix {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-weight: 400;
-}
-.stat-label {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 0.92rem;
-  color: var(--ink-soft);
-  font-weight: 500;
-  position: relative;
-  z-index: 1;
-}
-
-/* ─── SECTIONS ─── */
-section { padding: 7rem 0; position: relative; }
-
-.section-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 4rem;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.section-tag {
-  display: inline-block;
-  background: var(--lilac);
-  color: var(--ink);
-  padding: 0.35rem 0.9rem;
-  border-radius: 100px;
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 1.25rem;
-}
-
-/* ─── SCROLL TEXT REVEAL ─── */
-.section-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  color: var(--ink);
-}
-.section-title .ital { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
-
-.reveal-word {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: top;
-}
-.reveal-word > span {
-  display: inline-block;
-  transform: translateY(110%) rotate(8deg);
-  opacity: 0;
-  transition: transform 0.85s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.85s ease;
-  transform-origin: bottom left;
-}
-.reveal-active .reveal-word > span {
-  transform: translateY(0) rotate(0);
-  opacity: 1;
-}
-
-.section-side-text {
-  max-width: 360px;
-  color: var(--ink-soft);
-  font-size: 1rem;
-  line-height: 1.6;
-}
-
-/* WORK BENTO GRID */
-.work-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 1.25rem;
-  grid-auto-rows: minmax(180px, auto);
-}
-
-.work-card {
-  background: var(--cream);
-  border: 1.5px solid var(--ink);
-  border-radius: 24px;
-  overflow: hidden;
-  position: relative;
-  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  display: flex;
-  flex-direction: column;
-  text-decoration: none;
-  color: var(--ink);
-}
-.work-card:hover {
-  transform: translateY(-6px) rotate(-0.5deg);
-  box-shadow: 8px 8px 0 var(--ink);
-}
-
-.work-card.big { grid-column: span 4; grid-row: span 2; min-height: 460px; }
-.work-card.tall { grid-column: span 2; grid-row: span 2; min-height: 460px; }
-.work-card.wide { grid-column: span 4; }
-.work-card.small { grid-column: span 2; }
-
-.work-card-thumb {
-  flex: 1;
-  position: relative;
-  overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-height: 220px;
-}
-
-.thumb-restaurant {
-  background-image:
-    linear-gradient(180deg, rgba(20, 12, 8, 0.25) 0%, rgba(20, 12, 8, 0.6) 100%),
-    url('https://images.unsplash.com/photo-1631292784640-2b24be784d5d?w=1200&auto=format&fit=crop&q=85');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-end;
-  padding: 2rem;
-  color: white;
-}
-.thumb-restaurant .browser-bar {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  background: rgba(0, 0, 0, 0.7);
-  backdrop-filter: blur(10px);
-  padding: 0.5rem 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.4rem;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-.browser-dot {
-  width: 9px; height: 9px;
-  border-radius: 50%;
-}
-.browser-dot.r { background: #ff6058; }
-.browser-dot.y { background: #ffbe2f; }
-.browser-dot.g { background: #2fc94d; }
-.browser-url {
-  margin-left: 0.75rem;
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 0.7rem;
-  color: rgba(255, 255, 255, 0.6);
-}
-.thumb-restaurant .preview-eyebrow {
-  color: #ffc987;
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  margin-bottom: 0.5rem;
-  font-weight: 500;
-}
-.thumb-restaurant .preview-title {
-  font-family: 'Instrument Serif', serif;
-  font-size: 2.7rem;
-  font-style: italic;
-  line-height: 1;
-  letter-spacing: -0.01em;
-  margin-bottom: 0.4rem;
-}
-.thumb-restaurant .preview-sub {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 0.85rem;
-  color: rgba(255, 255, 255, 0.75);
-  font-style: italic;
-}
-
-.thumb-photography {
-  background-image:
-    linear-gradient(180deg, rgba(180, 100, 80, 0.15) 0%, rgba(180, 100, 80, 0.55) 100%),
-    url('https://images.unsplash.com/photo-1554080353-a576cf803bda?w=900&auto=format&fit=crop&q=85');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.thumb-photography .photo-overlay {
-  background: rgba(254, 249, 240, 0.95);
-  padding: 1.25rem 1.5rem;
-  border-radius: 14px;
-  border: 1.5px solid var(--ink);
-  text-align: center;
-  transform: rotate(-3deg);
-  box-shadow: 6px 6px 0 var(--ink);
-}
-.thumb-photography .photo-overlay-h {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-size: 1.4rem;
-  color: var(--ink);
-  line-height: 1;
-}
-.thumb-photography .photo-overlay-sub {
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-top: 0.4rem;
-}
-
-.thumb-academy {
-  background-image:
-    linear-gradient(180deg, rgba(60, 50, 120, 0.15) 0%, rgba(60, 50, 120, 0.5) 100%),
-    url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&auto=format&fit=crop&q=85');
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.thumb-academy .academy-badge {
-  background: var(--cream);
-  padding: 1rem 1.5rem;
-  border-radius: 14px;
-  border: 1.5px solid var(--ink);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  box-shadow: 6px 6px 0 var(--ink);
-  transform: rotate(2deg);
-}
-.thumb-academy .academy-badge-mark {
-  width: 38px; height: 38px;
-  background: var(--lilac);
-  border-radius: 50%;
-  border: 1.5px solid var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-.thumb-academy .academy-badge-text {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--ink);
-  line-height: 1.1;
-}
-.thumb-academy .academy-badge-text span {
-  display: block;
-  font-family: 'Inter Tight', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-top: 0.2rem;
-}
-
-.work-card-info {
-  padding: 1.5rem 1.5rem 1.75rem;
-  background: var(--cream);
-  color: var(--ink);
-}
-.work-card-tag {
-  display: inline-block;
-  background: var(--mint);
-  color: var(--ink);
-  padding: 0.25rem 0.7rem;
-  border-radius: 100px;
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin-bottom: 0.6rem;
-}
-.work-card-title {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.3rem;
-}
-.work-card-desc {
-  color: var(--ink-soft);
-  font-size: 0.92rem;
-  line-height: 1.5;
-  margin-bottom: 0.75rem;
-}
-.work-card-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink);
-}
-.work-card-link .arrow { transition: transform 0.3s; }
-.work-card:hover .work-card-link .arrow { transform: translateX(4px); }
-
-/* WHAT I DO */
-.do-list {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 1.25rem;
-}
-.do-item {
-  background: var(--cream-soft);
-  border: 1.5px solid var(--ink);
-  border-radius: 24px;
-  padding: 2.5rem;
-  display: flex;
-  gap: 1.5rem;
-  align-items: flex-start;
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.do-item:hover {
-  background: var(--butter);
-  transform: translateY(-4px) rotate(-0.5deg);
-  box-shadow: 6px 6px 0 var(--ink);
-}
-.do-num {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-size: 3rem;
-  font-weight: 400;
-  line-height: 1;
-  color: var(--ink);
-  flex-shrink: 0;
-}
-.do-content h3 {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 500;
-  letter-spacing: -0.02em;
-  margin-bottom: 0.5rem;
-  color: var(--ink);
-}
-.do-content p {
-  color: var(--ink-soft);
-  font-size: 0.95rem;
-  line-height: 1.55;
-  margin-bottom: 1rem;
-}
-.do-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.85rem;
-  font-weight: 600;
-  color: var(--ink);
-  border-bottom: 1.5px solid var(--ink);
-  padding-bottom: 2px;
-}
-.do-link:hover { color: var(--ink-soft); border-bottom-color: var(--ink-soft); }
-
-/* CONTACT */
-.contact-card {
-  background: var(--ink);
-  color: var(--cream);
-  border-radius: 32px;
-  padding: 6rem 4rem;
-  text-align: center;
-  position: relative;
-  overflow: hidden;
-}
-.contact-card::before {
-  content: '';
-  position: absolute;
-  top: -40%; left: -20%;
-  width: 80vw; height: 80vw;
-  background: radial-gradient(circle, rgba(255, 184, 200, 0.15) 0%, transparent 60%);
-  pointer-events: none;
-}
-.contact-card::after {
-  content: '';
-  position: absolute;
-  bottom: -40%; right: -20%;
-  width: 80vw; height: 80vw;
-  background: radial-gradient(circle, rgba(196, 168, 255, 0.15) 0%, transparent 60%);
-  pointer-events: none;
-}
-.contact-h {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: clamp(2.5rem, 6vw, 5rem);
-  line-height: 0.95;
-  letter-spacing: -0.04em;
-  font-weight: 500;
-  margin-bottom: 1.5rem;
-  position: relative;
-  z-index: 2;
-}
-.contact-h .ital {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-weight: 400;
-  background: linear-gradient(135deg, var(--pink), var(--lilac));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.contact-sub {
-  color: rgba(250, 244, 230, 0.7);
-  font-size: 1.15rem;
-  max-width: 480px;
-  margin: 0 auto 2.5rem;
-  line-height: 1.6;
-  position: relative;
-  z-index: 2;
-}
-.btn-contact {
-  background: var(--cream);
-  color: var(--ink);
-  padding: 1.3rem 2.5rem;
-  border-radius: 100px;
-  font-size: 1.05rem;
-  font-weight: 600;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), background 0.3s;
-  position: relative;
-  z-index: 2;
-}
-.btn-contact:hover { background: var(--butter); }
-.contact-email {
-  display: block;
-  margin-top: 1.5rem;
-  color: rgba(250, 244, 230, 0.6);
-  font-size: 0.95rem;
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  position: relative;
-  z-index: 2;
-}
-
-/* FOOTER */
-footer {
-  padding: 3rem 0 3.5rem;
-  border-top: 1px solid var(--line);
-}
-.footer-flex {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-.footer-logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.6rem;
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  letter-spacing: -0.03em;
-  color: var(--ink);
-  transition: opacity 0.2s;
-}
-.footer-logo:hover { opacity: 0.7; }
-.footer-logo em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; }
-.footer-logo .logo-svg { width: 32px; height: 32px; }
-.footer-year { color: var(--ink-mute); font-size: 0.85rem; }
-
-/* REVEAL */
-.reveal { opacity: 0; transform: translateY(50px); transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1); }
-.reveal.visible { opacity: 1; transform: translateY(0); }
-
-/* RESPONSIVE */
-@media (max-width: 968px) {
-  .nav-links { display: none; }
-  .hero-content { grid-template-columns: 1fr; gap: 3rem; }
-  .hero-3d-stage { height: 460px; border-radius: 24px; }
-  .work-grid { grid-template-columns: 1fr; }
-  .work-card.big, .work-card.tall, .work-card.wide, .work-card.small {
-    grid-column: span 1;
-    grid-row: auto;
-    min-height: 380px;
-  }
-  .do-list { grid-template-columns: 1fr; }
-  .stats-grid { grid-template-columns: 1fr 1fr; gap: 1rem; }
-  .marquee-item { font-size: 1.5rem; }
-  section { padding: 5rem 0; }
-  .contact-card { padding: 4rem 1.5rem; border-radius: 24px; }
-  .thumb-restaurant .preview-title { font-size: 2rem; }
-}
-@media (max-width: 600px) {
-  nav { padding: 1rem 1.25rem; }
-  .container { padding: 0 1.25rem; }
-  .hero { padding: 7rem 0 3rem; }
-  .hero-3d-stage { height: 380px; }
-  .hero-buttons { flex-direction: column; align-items: stretch; }
-  .btn-primary, .btn-secondary { justify-content: center; }
-  .do-item { flex-direction: column; gap: 1rem; padding: 2rem; }
-  .do-num { font-size: 2.5rem; }
-}
-
-/* Prefer-reduced-motion */
-@media (prefers-reduced-motion: reduce) {
-  .blob, .stackBreath, .pulse, .marquee-track { animation: none !important; }
-  .reveal-word > span { transform: none; opacity: 1; }
-}
-
-/* ═══════════════════════════════════════════════ */
-/* PREMIUM 3D UPGRADES                              */
-/* ═══════════════════════════════════════════════ */
-
-/* ─── LOADING SCREEN ─── */
-.loader {
-  position: fixed;
-  inset: 0;
-  background: var(--cream);
-  z-index: 10000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1.5rem;
-  transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.6s;
-}
-.loader.done {
-  opacity: 0;
-  visibility: hidden;
-}
-.loader-logo {
-  width: 80px;
-  height: 80px;
-  animation: loaderSpin 1.4s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) rotate(5deg); }
+}
+@keyframes float-alt {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  50% { transform: translateY(20px) rotate(-5deg); }
+}
+@keyframes float-slow {
+  0%, 100% { transform: translate(0px, 0px); }
+  50% { transform: translate(15px, -25px); }
 }
 @keyframes loaderSpin {
   0% { transform: rotate(0deg) scale(1); }
   50% { transform: rotate(180deg) scale(1.1); }
   100% { transform: rotate(360deg) scale(1); }
 }
-.loader-text {
-  font-family: 'Bricolage Grotesque', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 500;
-  color: var(--ink);
-  letter-spacing: -0.02em;
-  opacity: 0;
-  animation: loaderTextFade 1.4s ease-in-out infinite;
-}
-.loader-text em {
-  font-family: 'Instrument Serif', serif;
-  font-style: italic;
-  font-weight: 400;
-}
-@keyframes loaderTextFade {
+@keyframes loaderFade {
   0%, 100% { opacity: 0.4; }
   50% { opacity: 1; }
 }
+@keyframes pill-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
 
-/* ─── SCROLL PROGRESS BAR ─── */
+.animate-float { animation: float 6s ease-in-out infinite; }
+.animate-float-alt { animation: float-alt 8s ease-in-out infinite; }
+.animate-float-slow { animation: float-slow 10s ease-in-out infinite; }
+.floating-pill { animation: pill-float 6s ease-in-out infinite; }
+
+.grain-overlay {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 100;
+  opacity: 0.04;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.08 0 0 0 0 0.06 0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  box-shadow: 0 8px 32px 0 rgba(133, 78, 92, 0.08);
+}
+
+.frosted-glass {
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.dark-glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(32px);
+  -webkit-backdrop-filter: blur(32px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.magnetic-button {
+  transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.magnetic-button:hover { transform: scale(1.05); }
+
+.floating-blob {
+  filter: blur(80px);
+  opacity: 0.5;
+  z-index: -1;
+}
+
+.mesh-gradient {
+  background:
+    radial-gradient(at top left, #ffb8c8 0%, transparent 50%),
+    radial-gradient(at bottom right, #c4a8ff 0%, transparent 50%),
+    radial-gradient(at top right, #b5efd1 0%, transparent 50%);
+}
+
+.glossy-sphere {
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.9) 0%, rgba(196, 168, 255, 0.5) 40%, rgba(105, 80, 159, 0.15) 100%);
+  box-shadow: inset -8px -8px 20px rgba(0,0,0,0.08), 5px 10px 30px rgba(105, 80, 159, 0.15);
+}
+
+/* Loading screen */
+.loader {
+  position: fixed;
+  inset: 0;
+  background: #fff8f4;
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1.25rem;
+  transition: opacity 0.6s, visibility 0.6s;
+}
+.loader.done { opacity: 0; visibility: hidden; }
+.loader-logo { width: 72px; height: 72px; animation: loaderSpin 1.4s cubic-bezier(0.6, 0, 0.4, 1) infinite; }
+.loader-text {
+  font-family: 'Bricolage Grotesque', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1f1b17;
+  letter-spacing: -0.02em;
+  animation: loaderFade 1.4s ease-in-out infinite;
+}
+.loader-text em {
+  font-family: 'Libre Caslon Text', serif;
+  font-style: italic;
+  font-weight: 400;
+  color: #854e5c;
+}
+
+/* Scroll progress bar */
 .scroll-progress {
   position: fixed;
   top: 0;
   left: 0;
   height: 3px;
   width: 0%;
-  background: linear-gradient(90deg, var(--pink), var(--lilac), var(--mint), var(--butter));
+  background: linear-gradient(90deg, #ffb8c8, #c4a8ff, #b5efd1, #ffe184);
   background-size: 300% 100%;
   z-index: 9999;
   transition: width 0.1s linear;
-  animation: scrollGradient 4s linear infinite;
+  animation: gradientShift 4s linear infinite;
   border-radius: 0 100px 100px 0;
 }
-@keyframes scrollGradient {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
+
+/* Spline iframe */
+.spline-frame {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+  border-radius: 32px;
 }
 
-/* ─── FLOATING STICKERS (parallax shapes) ─── */
-.sticker {
-  position: absolute;
-  pointer-events: none;
-  z-index: 1;
-  will-change: transform;
+/* Reveal animation */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s cubic-bezier(0.16, 1, 0.3, 1), transform 1s cubic-bezier(0.16, 1, 0.3, 1);
 }
-.sticker-1 {
-  top: 30%; left: 5%;
-  width: 70px; height: 70px;
-  background: radial-gradient(circle at 30% 30%, #ffe6ec, var(--pink) 60%, #d97a92 100%);
-  border-radius: 50%;
-  box-shadow: inset -8px -10px 20px rgba(180, 60, 90, 0.25), 0 12px 30px rgba(180, 60, 90, 0.2);
-  animation: stickerBob 6s ease-in-out infinite alternate;
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* Template thumb backgrounds */
+.thumb-restaurant {
+  background-image:
+    linear-gradient(180deg, rgba(20, 12, 8, 0.2) 0%, rgba(20, 12, 8, 0.65) 100%),
+    url('https://images.unsplash.com/photo-1631292784640-2b24be784d5d?w=1400&auto=format&fit=crop&q=85');
+  background-size: cover;
+  background-position: center;
 }
-.sticker-2 {
-  top: 110%; right: 8%;
-  width: 90px; height: 90px;
-  background: radial-gradient(circle at 30% 30%, #f0e0ff, var(--lilac) 60%, #8a6dd9 100%);
-  border-radius: 28px;
-  box-shadow: inset -8px -10px 20px rgba(110, 80, 200, 0.25), 0 12px 30px rgba(110, 80, 200, 0.2);
-  transform: rotate(20deg);
-  animation: stickerBob 8s ease-in-out infinite alternate;
+.thumb-photography {
+  background-image:
+    linear-gradient(180deg, rgba(180, 100, 80, 0.1) 0%, rgba(180, 100, 80, 0.5) 100%),
+    url('https://images.unsplash.com/photo-1554080353-a576cf803bda?w=900&auto=format&fit=crop&q=85');
+  background-size: cover;
+  background-position: center;
 }
-.sticker-3 {
-  top: 180%; left: 8%;
-  width: 60px; height: 60px;
-  background: radial-gradient(circle at 30% 30%, #fff5d4, var(--butter) 60%, #d9b740 100%);
-  border-radius: 50%;
-  box-shadow: inset -8px -10px 20px rgba(180, 140, 30, 0.25), 0 12px 30px rgba(180, 140, 30, 0.2);
-  animation: stickerBob 7s ease-in-out infinite alternate;
+.thumb-academy {
+  background-image:
+    linear-gradient(180deg, rgba(60, 50, 120, 0.1) 0%, rgba(60, 50, 120, 0.5) 100%),
+    url('https://images.unsplash.com/photo-1497633762265-9d179a990aa6?w=1200&auto=format&fit=crop&q=85');
+  background-size: cover;
+  background-position: center;
 }
-.sticker-4 {
-  top: 280%; right: 5%;
-  width: 80px; height: 40px;
-  background: radial-gradient(circle at 30% 30%, #d8ffe5, var(--mint) 60%, #6ec99c 100%);
+
+/* Stat card */
+.stat-card {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stat-card:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 6px 6px 0 #1f1b17;
+}
+
+/* Dark CTA section */
+.dark-section {
+  background: linear-gradient(135deg, #181410 0%, #2a221d 100%);
+  color: #f9efe8;
+}
+
+/* Form inputs */
+.form-input {
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid rgba(31, 27, 23, 0.15);
+  padding: 12px 0;
+  font-size: 18px;
+  width: 100%;
+  outline: none;
+  font-family: 'Hanken Grotesk', sans-serif;
+  color: #1f1b17;
+  transition: border-color 0.3s;
+}
+.form-input:focus { border-bottom-color: #854e5c; }
+.form-input::placeholder { color: rgba(31, 27, 23, 0.3); }
+.form-label {
+  font-family: 'Hanken Grotesk', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: #514346;
+  display: block;
+  margin-bottom: 8px;
+}
+.checkbox-pill {
+  display: inline-block;
+  padding: 8px 20px;
+  border: 1px solid rgba(31, 27, 23, 0.15);
+  background: rgba(255, 255, 255, 0.5);
   border-radius: 100px;
-  box-shadow: inset -8px -10px 20px rgba(80, 160, 120, 0.25), 0 12px 30px rgba(80, 160, 120, 0.2);
-  transform: rotate(-15deg);
-  animation: stickerBob 9s ease-in-out infinite alternate;
+  font-size: 15px;
+  cursor: pointer;
+  transition: all 0.3s;
 }
-@keyframes stickerBob {
-  0% { transform: translateY(0) rotate(0deg); }
-  100% { transform: translateY(-30px) rotate(15deg); }
-}
-
-/* ─── 3D CARD TILT ─── */
-.tilt-card {
-  transform-style: preserve-3d;
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform;
-}
-.tilt-card-inner {
-  transform-style: preserve-3d;
-}
-.tilt-card .work-card-thumb,
-.tilt-card .stat-number,
-.tilt-card .work-card-info {
-  transform: translateZ(0);
-  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.tilt-card:hover .work-card-thumb { transform: translateZ(20px); }
-.tilt-card:hover .work-card-info { transform: translateZ(40px); }
-
-/* ─── ENHANCED HERO 3D STAGE BORDER GLOW ─── */
-.hero-3d-stage {
-  box-shadow:
-    0 30px 80px rgba(196, 168, 255, 0.25),
-    0 0 0 1px rgba(24, 20, 16, 0.06);
+.checkbox-pill:hover { background: rgba(255, 255, 255, 0.8); }
+input[type="checkbox"]:checked + .checkbox-pill {
+  background: #ffb8c8;
+  border-color: #ffb8c8;
+  color: #7b4553;
+  font-weight: 600;
 }
 </style>
 </head>
-<body>
+<body class="bg-background text-on-surface selection:bg-primary-container selection:text-on-primary-container">
 
-<!-- ═══ LOADING SCREEN ═══ -->
+<!-- LOADING SCREEN -->
 <div class="loader" id="loader">
   <svg class="loader-logo" viewBox="0 0 64 64">
-    <use href="#yugh-logo"/>
+    <circle cx="32" cy="32" r="30" fill="#1f1b17"/>
+    <path d="M32 8 A24 24 0 0 1 56 32 L32 32 Z" fill="#ffb8c8"/>
+    <path d="M56 32 A24 24 0 0 1 32 56 L32 32 Z" fill="#c4a8ff"/>
+    <path d="M32 56 A24 24 0 0 1 8 32 L32 32 Z" fill="#b5efd1"/>
+    <path d="M8 32 A24 24 0 0 1 32 8 L32 32 Z" fill="#ffe184"/>
+    <circle cx="32" cy="32" r="6" fill="#1f1b17"/>
   </svg>
   <div class="loader-text">Yugh <em>Studio</em></div>
 </div>
 
-<!-- ═══ SCROLL PROGRESS ═══ -->
+<!-- SCROLL PROGRESS -->
 <div class="scroll-progress" id="scrollProgress"></div>
 
-<div class="blob blob-1"></div>
-<div class="blob blob-2"></div>
-<div class="blob blob-3"></div>
-<div class="blob blob-4"></div>
-
-<!-- ═══ FLOATING STICKERS ═══ -->
-<div class="sticker sticker-1"></div>
-<div class="sticker sticker-2"></div>
-<div class="sticker sticker-3"></div>
-<div class="sticker sticker-4"></div>
+<!-- GRAIN OVERLAY -->
+<div class="grain-overlay"></div>
 
 <!-- REUSABLE LOGO SVG -->
 <svg width="0" height="0" style="position:absolute;">
   <defs>
     <symbol id="yugh-logo" viewBox="0 0 64 64">
-      <circle cx="32" cy="32" r="30" fill="#181410"/>
+      <circle cx="32" cy="32" r="30" fill="#1f1b17"/>
       <path d="M32 8 A24 24 0 0 1 56 32 L32 32 Z" fill="#ffb8c8"/>
       <path d="M56 32 A24 24 0 0 1 32 56 L32 32 Z" fill="#c4a8ff"/>
-      <path d="M32 56 A24 24 0 0 1 8 32 L32 32 Z" fill="#b4eed0"/>
+      <path d="M32 56 A24 24 0 0 1 8 32 L32 32 Z" fill="#b5efd1"/>
       <path d="M8 32 A24 24 0 0 1 32 8 L32 32 Z" fill="#ffe184"/>
-      <circle cx="32" cy="32" r="6" fill="#181410"/>
+      <circle cx="32" cy="32" r="6" fill="#1f1b17"/>
     </symbol>
   </defs>
 </svg>
 
-<nav>
-  <a href="#" class="nav-logo">
-    <svg class="logo-svg"><use href="#yugh-logo"/></svg>
-    <span class="nav-logo-text">Yugh <em>Studio</em></span>
-  </a>
-  <ul class="nav-links">
-    <li><a href="#work">Work</a></li>
-    <li><a href="#do">What I do</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <a href="mailto:yugeshr601@gmail.com?subject=Hello%2C%20I%20have%20a%20project%20in%20mind" class="nav-cta btn-magnetic">Say hello →</a>
+<!-- NAVIGATION -->
+<nav class="fixed top-0 w-full z-50 frosted-glass shadow-sm">
+  <div class="flex justify-between items-center px-6 md:px-margin-desktop py-4 max-w-container-max mx-auto">
+    <a href="#top" class="flex items-center gap-3">
+      <svg class="w-9 h-9"><use href="#yugh-logo"/></svg>
+      <span class="font-display-lg text-[22px] md:text-[26px] font-bold tracking-tight text-on-surface">
+        Yugh <span class="font-accent-italic italic text-primary">Studio</span>
+      </span>
+    </a>
+    <div class="hidden md:flex items-center gap-10">
+      <a href="#work" class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Work</a>
+      <a href="#studio" class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Studio</a>
+      <a href="#process" class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Process</a>
+      <a href="#contact" class="text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md">Contact</a>
+    </div>
+    <a href="#contact" class="magnetic-button bg-primary text-on-primary px-6 py-2.5 rounded-full font-body-md text-body-md font-semibold">
+      Hire me →
+    </a>
+  </div>
 </nav>
 
-<main>
+<main id="top" class="pt-24 overflow-x-hidden">
 
-<!-- HERO with Spline 3D scene -->
-<section class="hero">
-  <div class="container">
-    <div class="hero-content">
-      <div>
-        <div class="hero-tag">
-          <span class="hero-tag-dot"></span>
-          Available for new projects
-        </div>
-        <h1 class="hero-h">
-          Designer <span class="ital">&amp;</span> developer<br>
-          making <span class="underline-it">websites</span><br>
-          <span class="ital">that feel alive.</span>
-        </h1>
-        <p class="hero-sub">
-          Based in Karachi. I build modern, mobile-first websites for restaurants, small businesses, and creators who want their work taken seriously.
+<!-- ════════ SECTION 1: HERO ════════ -->
+<section class="min-h-[700px] md:min-h-[850px] flex flex-col md:flex-row items-center px-6 md:px-margin-desktop max-w-container-max mx-auto relative">
+  <div class="absolute -z-10 top-20 -left-20 w-[500px] h-[500px] bg-primary-container/40 rounded-full floating-blob animate-float-slow"></div>
+  <div class="absolute -z-10 bottom-40 right-20 w-[450px] h-[450px] bg-secondary-container/30 rounded-full floating-blob animate-float-alt"></div>
+  <div class="absolute -z-10 top-1/2 left-1/3 w-[400px] h-[400px] bg-tertiary-container/30 rounded-full floating-blob animate-float"></div>
+
+  <div class="w-full md:w-1/2 flex flex-col items-start gap-8 py-12 md:py-0 z-10">
+    <div class="flex items-center gap-3 px-4 py-1.5 frosted-glass rounded-full">
+      <span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+      <span class="text-label-caps font-label-caps tracking-widest text-on-surface-variant">AVAILABLE FOR WORK</span>
+    </div>
+    <h1 class="font-display-lg text-display-lg-mobile md:text-display-lg text-on-surface leading-tight">
+      Digital Craft <br>
+      for the <span class="font-accent-italic text-accent-italic text-primary italic">New Era</span>
+    </h1>
+    <p class="font-body-lg text-body-lg text-on-surface-variant max-w-lg">
+      Karachi-based designer and developer building modern, mobile-first websites for restaurants, small businesses, and creators.
+    </p>
+    <div class="flex flex-wrap gap-4 mt-4">
+      <a href="#contact" class="magnetic-button bg-primary text-on-primary px-8 py-4 rounded-xl font-body-md text-body-lg flex items-center gap-2 group font-semibold">
+        Start a Project
+        <span class="material-symbols-outlined text-[20px] group-hover:translate-x-1 transition-transform">arrow_forward</span>
+      </a>
+      <a href="#work" class="frosted-glass px-8 py-4 rounded-xl font-body-md text-body-lg text-on-surface hover:bg-white/60 transition-colors font-semibold">
+        View Work
+      </a>
+    </div>
+  </div>
+
+  <div class="w-full md:w-1/2 h-[500px] md:h-[700px] relative flex items-center justify-center">
+    <iframe 
+      src="https://my.spline.design/studiolanding-8NUuskgDJKBeODEmh67cPmbH/"
+      class="spline-frame"
+      loading="lazy"
+      allow="autoplay; fullscreen"
+      title="3D Hero Scene"
+    ></iframe>
+    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] mesh-gradient rounded-full blur-[120px] opacity-30 -z-10"></div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 2: STATS ════════ -->
+<section class="py-12 px-6 md:px-margin-desktop max-w-container-max mx-auto">
+  <div class="grid grid-cols-2 md:grid-cols-4 gap-bento-gap">
+    <div class="stat-card rounded-2xl p-6 reveal">
+      <div class="font-display-lg text-[40px] font-bold text-primary leading-none mb-2">
+        <span data-count="5" data-suffix="+">0</span>
+      </div>
+      <div class="font-body-md text-body-md text-on-surface-variant">Websites built</div>
+    </div>
+    <div class="stat-card rounded-2xl p-6 reveal">
+      <div class="font-display-lg text-[40px] font-bold text-secondary leading-none mb-2">
+        <span data-count="100" data-suffix="%">0</span>
+      </div>
+      <div class="font-body-md text-body-md text-on-surface-variant">Custom built</div>
+    </div>
+    <div class="stat-card rounded-2xl p-6 reveal">
+      <div class="font-display-lg text-[40px] font-bold text-tertiary leading-none mb-2">
+        <span data-count="7" data-suffix="d">0</span>
+      </div>
+      <div class="font-body-md text-body-md text-on-surface-variant">Avg. delivery</div>
+    </div>
+    <div class="stat-card rounded-2xl p-6 reveal">
+      <div class="font-display-lg text-[40px] font-bold text-on-surface leading-none mb-2">
+        <span data-count="24" data-suffix="h">0</span>
+      </div>
+      <div class="font-body-md text-body-md text-on-surface-variant">Reply time</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 3: SELECTED WORK (BENTO) ════════ -->
+<section id="work" class="py-24 px-6 md:px-margin-desktop max-w-container-max mx-auto">
+  <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6 reveal">
+    <div class="max-w-xl">
+      <span class="inline-block bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-caps mb-4">SELECTED WORK</span>
+      <h2 class="font-headline-md text-headline-md text-on-surface mb-4">Recent <span class="font-accent-italic italic text-primary">templates</span> &amp; case studies.</h2>
+      <p class="font-body-md text-body-md text-on-surface-variant">Each template is a real working website. Customised with your brand, content, and integrations.</p>
+    </div>
+    <a href="#contact" class="text-primary font-bold flex items-center gap-2 group">
+      Start a project <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">east</span>
+    </a>
+  </div>
+
+  <div class="grid grid-cols-1 md:grid-cols-12 gap-bento-gap auto-rows-[300px]">
+    <!-- Big: Restaurant Pro -->
+    <a href="templates/restaurant-template.html" target="_blank" class="md:col-span-8 md:row-span-2 glass-card rounded-[32px] overflow-hidden group relative flex flex-col justify-end p-8 thumb-restaurant reveal">
+      <div class="absolute top-4 left-4 flex items-center gap-1.5 bg-black/60 backdrop-blur px-3 py-1.5 rounded-full">
+        <span class="w-2 h-2 rounded-full bg-[#ff6058]"></span>
+        <span class="w-2 h-2 rounded-full bg-[#ffbe2f]"></span>
+        <span class="w-2 h-2 rounded-full bg-[#2fc94d]"></span>
+        <span class="text-[10px] text-white/70 ml-2 tracking-widest">RESTAURANTPRO.DEMO</span>
+      </div>
+      <div class="relative z-10 text-white">
+        <span class="text-label-caps font-label-caps tracking-widest opacity-80 mb-2 block">RESTAURANT · ONLINE ORDERING</span>
+        <h3 class="font-headline-md text-headline-md text-white mb-3">Restaurant Pro</h3>
+        <p class="font-body-md text-body-md opacity-90 max-w-md">Complete ordering system with menu, cart, checkout, live admin dashboard, kitchen slips, and WhatsApp integration.</p>
+        <span class="inline-flex items-center gap-2 mt-4 text-sm font-bold">View live demo <span class="group-hover:translate-x-1 transition-transform">→</span></span>
+      </div>
+    </a>
+
+    <!-- Tall: Photography -->
+    <a href="templates/photography.html" target="_blank" class="md:col-span-4 md:row-span-2 glass-card rounded-[32px] overflow-hidden group relative thumb-photography reveal flex flex-col justify-end p-8">
+      <div class="relative z-10 text-white">
+        <span class="text-label-caps font-label-caps tracking-widest opacity-80 mb-2 block">PHOTOGRAPHY</span>
+        <h3 class="font-headline-md text-[28px] text-white mb-3">Photographer Folio</h3>
+        <p class="font-body-md text-body-md opacity-90 max-w-md">Editorial portfolio with full-screen galleries and inquiry forms.</p>
+        <span class="inline-flex items-center gap-2 mt-4 text-sm font-bold">View live demo <span class="group-hover:translate-x-1 transition-transform">→</span></span>
+      </div>
+    </a>
+
+    <!-- Wide: Tuition Academy -->
+    <a href="templates/academy.html" target="_blank" class="md:col-span-8 md:row-span-1 glass-card rounded-[32px] overflow-hidden group relative thumb-academy reveal flex flex-col justify-end p-8">
+      <div class="relative z-10 text-white">
+        <span class="text-label-caps font-label-caps tracking-widest opacity-80 mb-2 block">EDUCATION</span>
+        <h3 class="font-headline-md text-[28px] text-white mb-2">Tuition Academy</h3>
+        <p class="font-body-md text-body-md opacity-90 max-w-md">Multi-class academy site with course catalog, faculty profiles, and online inquiries.</p>
+        <span class="inline-flex items-center gap-2 mt-3 text-sm font-bold">View live demo <span class="group-hover:translate-x-1 transition-transform">→</span></span>
+      </div>
+    </a>
+
+    <!-- Small: Want something different -->
+    <a href="#contact" class="md:col-span-4 md:row-span-1 glass-card rounded-[32px] flex flex-col items-center justify-center text-center p-8 border-dashed border-2 border-outline/30 hover:border-primary transition-colors cursor-pointer group reveal" style="background: rgba(255, 225, 132, 0.4);">
+      <div class="w-16 h-16 rounded-full bg-surface-container-high flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+        <span class="material-symbols-outlined text-primary text-[32px]">add</span>
+      </div>
+      <p class="font-headline-md text-[18px] text-on-surface mb-1">Want something different?</p>
+      <p class="font-label-caps tracking-widest text-on-surface-variant">LET'S TALK →</p>
+    </a>
+  </div>
+</section>
+
+<!-- ════════ SECTION 4: STUDIO / ABOUT ════════ -->
+<section id="studio" class="px-6 md:px-margin-desktop max-w-container-max mx-auto py-24 relative">
+  <div class="absolute -top-12 -left-8 w-24 h-24 bg-primary-container/30 blur-3xl rounded-full"></div>
+  <div class="absolute top-1/2 -right-16 w-64 h-64 bg-secondary-container/20 blur-3xl rounded-full"></div>
+
+  <div class="relative z-10 reveal">
+    <div class="flex items-center gap-3 mb-6 floating-pill">
+      <span class="bg-primary-container text-on-primary-container px-3 py-1 rounded-full font-label-caps">ABOUT THE STUDIO</span>
+      <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+    </div>
+    <h2 class="font-display-lg text-display-lg-mobile md:text-display-lg max-w-4xl mb-8">
+      I sculpt digital <span class="font-accent-italic text-primary italic">experiences</span> that take small brands seriously.
+    </h2>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-gutter items-end">
+      <div class="md:col-span-7">
+        <p class="font-body-lg text-body-lg text-on-surface-variant max-w-xl">
+          Yugh Studio is run by <strong class="text-on-surface">Yugesh</strong>, a designer and developer based in Karachi. I build websites the way a good chef cooks. Carefully, with intention, and always with the end customer in mind.
         </p>
-        <div class="hero-buttons">
-          <a href="mailto:yugeshr601@gmail.com?subject=Hello%2C%20I%20have%20a%20project%20in%20mind" class="btn-primary btn-magnetic">Start a project →</a>
-          <a href="#work" class="btn-secondary btn-magnetic">See the work</a>
-        </div>
       </div>
-
-      <div class="hero-3d-stage">
-        <!-- SPLINE 3D — embedded via iframe (most reliable) -->
-        <iframe 
-          src="https://my.spline.design/studiolanding-8NUuskgDJKBeODEmh67cPmbH/"
-          frameborder="0"
-          width="100%"
-          height="100%"
-          loading="lazy"
-          allow="autoplay; fullscreen"
-          style="border: 0; display: block; width: 100%; height: 100%;">
-        </iframe>
-
-        <!-- Fallback CSS shapes (shown if iframe doesn't load) -->
-        <div class="hero-3d-fallback" id="heroFallback">
-          <div class="shape-stack">
-            <div class="shape shape-sphere"></div>
-            <div class="shape shape-torus"></div>
-            <div class="shape shape-pill"></div>
-            <div class="shape shape-cube"></div>
-          </div>
+      <div class="md:col-span-5 flex justify-end">
+        <div class="glass-card p-4 rounded-2xl rotate-3 hover:rotate-0 transition-transform duration-500 max-w-xs">
+          <img class="rounded-xl w-full" alt="Designer workspace" src="https://images.unsplash.com/photo-1542435503-956c469947f6?w=500&auto=format&fit=crop&q=85"/>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MARQUEE -->
-<div class="marquee">
-  <div class="marquee-track">
-    <span class="marquee-item">Restaurant websites <span class="dot"></span></span>
-    <span class="marquee-item">Online ordering <span class="dot"></span></span>
-    <span class="marquee-item">Brand portfolios <span class="dot"></span></span>
-    <span class="marquee-item">Landing pages <span class="dot"></span></span>
-    <span class="marquee-item">Admin dashboards <span class="dot"></span></span>
-    <span class="marquee-item">Restaurant websites <span class="dot"></span></span>
-    <span class="marquee-item">Online ordering <span class="dot"></span></span>
-    <span class="marquee-item">Brand portfolios <span class="dot"></span></span>
-    <span class="marquee-item">Landing pages <span class="dot"></span></span>
-    <span class="marquee-item">Admin dashboards <span class="dot"></span></span>
-  </div>
-</div>
-
-<!-- STATS WITH ANIMATED COUNTERS -->
-<section class="stats">
-  <div class="container">
-    <div class="stats-grid">
-      <div class="stat-card color-pink reveal">
-        <div class="stat-number" data-count="5" data-suffix="+">0<span class="suffix">+</span></div>
-        <div class="stat-label">Websites in production</div>
+<!-- ════════ SECTION 5: PHILOSOPHY BENTO ════════ -->
+<section class="px-6 md:px-margin-desktop py-24 bg-surface-container-low/50 relative">
+  <div class="max-w-container-max mx-auto">
+    <div class="text-center mb-16 reveal">
+      <h2 class="font-headline-md text-headline-md mb-4">How I work</h2>
+      <p class="font-body-md text-on-surface-variant">Four principles that guide every project.</p>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-bento-gap">
+      <div class="md:col-span-2 glass-card rounded-3xl p-12 relative overflow-hidden group reveal">
+        <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary-container/20 rounded-full group-hover:scale-110 transition-transform duration-700"></div>
+        <span class="material-symbols-outlined text-primary text-5xl mb-6">auto_awesome</span>
+        <h3 class="font-headline-md text-2xl mb-4">Detail over decoration</h3>
+        <p class="text-on-surface-variant font-body-lg max-w-md">
+          Typography, spacing, micro-interactions, mobile experience. The little things most designers skip are the things that make a site feel finished.
+        </p>
       </div>
-      <div class="stat-card color-lilac reveal">
-        <div class="stat-number" data-count="100" data-suffix="%">0<span class="suffix">%</span></div>
-        <div class="stat-label">Happy clients</div>
+      <div class="glass-card rounded-3xl p-10 flex flex-col justify-between reveal">
+        <span class="material-symbols-outlined text-secondary text-5xl">diamond</span>
+        <div>
+          <h3 class="font-headline-md text-xl mb-2">Built to convert</h3>
+          <p class="text-on-surface-variant font-body-md">A beautiful site that doesn't get clicks is wallpaper. I design for action first, looks second.</p>
+        </div>
       </div>
-      <div class="stat-card color-mint reveal">
-        <div class="stat-number" data-count="7" data-suffix="d">0<span class="suffix">d</span></div>
-        <div class="stat-label">Average delivery</div>
+      <div class="glass-card rounded-3xl p-10 flex flex-col justify-between hover:bg-secondary-container/10 transition-colors duration-500 reveal">
+        <span class="material-symbols-outlined text-tertiary text-5xl">hub</span>
+        <div>
+          <h3 class="font-headline-md text-xl mb-2">Mobile first, always</h3>
+          <p class="text-on-surface-variant font-body-md">Most of your customers will visit on phone. Your site should look incredible there, not just on a desktop.</p>
+        </div>
       </div>
-      <div class="stat-card color-butter reveal">
-        <div class="stat-number" data-count="24" data-suffix="h">0<span class="suffix">h</span></div>
-        <div class="stat-label">Reply time</div>
+      <div class="md:col-span-2 glass-card rounded-3xl p-10 flex items-center gap-8 relative overflow-hidden reveal">
+        <img class="w-48 h-48 object-cover rounded-2xl hidden md:block" alt="Working on details" src="https://images.unsplash.com/photo-1559028012-481c04fa702d?w=600&auto=format&fit=crop&q=85"/>
+        <div>
+          <h3 class="font-headline-md text-xl mb-2">Yours to keep</h3>
+          <p class="text-on-surface-variant font-body-md max-w-lg">No vendor lock-in, no subscription traps. The website I build is yours, hosted wherever you want, editable however you want.</p>
+        </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- WORK -->
-<section id="work">
-  <div class="container">
-    <div class="section-head reveal">
+<!-- ════════ SECTION 6: PROCESS ════════ -->
+<section id="process" class="px-6 md:px-margin-desktop py-24 max-w-container-max mx-auto">
+  <h2 class="font-headline-md text-headline-md text-center mb-20 reveal">The Process</h2>
+  <div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+    <div class="text-center group reveal">
+      <div class="w-32 h-32 mx-auto mb-8 relative">
+        <div class="absolute inset-0 frosted-glass rounded-full group-hover:scale-110 transition-transform duration-1000"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-5xl">lightbulb</span>
+        </div>
+      </div>
+      <h4 class="font-label-caps text-primary mb-2">01 · DISCOVERY</h4>
+      <p class="font-body-md text-on-surface-variant">A free chat about your business and what you actually need. No sales pitch.</p>
+    </div>
+    <div class="text-center group reveal">
+      <div class="w-32 h-32 mx-auto mb-8 relative">
+        <div class="absolute inset-0 frosted-glass rounded-full group-hover:scale-110 transition-transform duration-1000"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="material-symbols-outlined text-secondary text-5xl">polyline</span>
+        </div>
+      </div>
+      <h4 class="font-label-caps text-secondary mb-2">02 · DESIGN</h4>
+      <p class="font-body-md text-on-surface-variant">Layout, typography, colours, and structure. You see real screens, not blank wireframes.</p>
+    </div>
+    <div class="text-center group reveal">
+      <div class="w-32 h-32 mx-auto mb-8 relative">
+        <div class="absolute inset-0 frosted-glass rounded-full group-hover:scale-110 transition-transform duration-1000"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="material-symbols-outlined text-tertiary text-5xl">palette</span>
+        </div>
+      </div>
+      <h4 class="font-label-caps text-tertiary mb-2">03 · BUILD</h4>
+      <p class="font-body-md text-on-surface-variant">I code the real site, integrate your content, set up forms and ordering.</p>
+    </div>
+    <div class="text-center group reveal">
+      <div class="w-32 h-32 mx-auto mb-8 relative">
+        <div class="absolute inset-0 frosted-glass rounded-full group-hover:scale-110 transition-transform duration-1000"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <span class="material-symbols-outlined text-primary text-5xl">rocket_launch</span>
+        </div>
+      </div>
+      <h4 class="font-label-caps text-on-primary-fixed-variant mb-2">04 · LAUNCH</h4>
+      <p class="font-body-md text-on-surface-variant">Deploy to your domain. Free first-month maintenance. Quick reply on any issues.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ════════ SECTION 7: CONTACT ════════ -->
+<section id="contact" class="px-6 md:px-margin-desktop max-w-container-max mx-auto py-24 grid grid-cols-1 md:grid-cols-12 gap-bento-gap relative">
+  <div class="absolute -z-10 top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-container/20 rounded-full blur-3xl"></div>
+
+  <div class="md:col-span-12 text-center mb-12 reveal">
+    <span class="inline-block bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full font-label-caps mb-4">GET IN TOUCH</span>
+    <h2 class="font-display-lg text-display-lg-mobile md:text-[64px] max-w-4xl mx-auto leading-none">
+      Let's build something <span class="font-accent-italic italic text-primary">great</span>.
+    </h2>
+    <p class="font-body-lg text-body-lg text-on-surface-variant mt-6 max-w-2xl mx-auto">
+      Tell me about your project and I'll reply within 24 hours. No pitch, no jargon. Just an honest conversation about what you need.
+    </p>
+  </div>
+
+  <!-- Left: Direct contact -->
+  <div class="md:col-span-4 flex flex-col gap-bento-gap">
+    <div class="glass-card p-10 rounded-3xl flex flex-col justify-between">
       <div>
-        <span class="section-tag">Selected work</span>
-        <h2 class="section-title" data-reveal-words>Recent templates &amp; case studies.</h2>
+        <h3 class="font-headline-md text-2xl mb-4 text-primary">Reach out</h3>
+        <p class="text-on-surface-variant mb-8">Prefer direct email? Drop me a note anytime.</p>
       </div>
-      <p class="section-side-text">
-        Each template is a real, working website. Customised with your brand, content, and integrations.
-      </p>
+      <a class="font-body-lg text-body-lg hover:text-primary transition-colors flex items-center gap-3" href="mailto:yugeshr601@gmail.com?subject=Hello%2C%20I%20have%20a%20project%20in%20mind">
+        yugeshr601@gmail.com
+        <span class="material-symbols-outlined text-sm">arrow_outward</span>
+      </a>
     </div>
-
-    <div class="work-grid">
-      <a href="templates/restaurant-template.html" target="_blank" class="work-card big reveal tilt-card">
-        <div class="work-card-thumb thumb-restaurant">
-          <div class="browser-bar">
-            <span class="browser-dot r"></span>
-            <span class="browser-dot y"></span>
-            <span class="browser-dot g"></span>
-            <span class="browser-url">restaurantpro.demo</span>
-          </div>
-          <div class="preview-eyebrow">Est. 1985 · Karachi</div>
-          <div class="preview-title">A traditional restaurant,<br>built online.</div>
-          <div class="preview-sub">Slow-cooked tradition, fresh ordering experience.</div>
-        </div>
-        <div class="work-card-info">
-          <span class="work-card-tag">Restaurant · Online ordering</span>
-          <h3 class="work-card-title">Restaurant Pro</h3>
-          <p class="work-card-desc">Complete ordering system with menu, cart, checkout, live admin dashboard, kitchen slips, and WhatsApp integration.</p>
-          <span class="work-card-link">View live demo <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a href="templates/photography.html" target="_blank" class="work-card tall reveal tilt-card">
-        <div class="work-card-thumb thumb-photography">
-          <div class="photo-overlay">
-            <div class="photo-overlay-h">studio noor</div>
-            <div class="photo-overlay-sub">Karachi · Est. 2022</div>
-          </div>
-        </div>
-        <div class="work-card-info">
-          <span class="work-card-tag">Photography</span>
-          <h3 class="work-card-title">Photographer Folio</h3>
-          <p class="work-card-desc">Editorial portfolio with full-screen galleries and booking forms.</p>
-          <span class="work-card-link">View live demo <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a href="templates/academy.html" target="_blank" class="work-card wide reveal tilt-card">
-        <div class="work-card-thumb thumb-academy">
-          <div class="academy-badge">
-            <div class="academy-badge-mark">E</div>
-            <div class="academy-badge-text">
-              Excel Academy
-              <span>Karachi's tuition centre</span>
-            </div>
-          </div>
-        </div>
-        <div class="work-card-info">
-          <span class="work-card-tag">Education</span>
-          <h3 class="work-card-title">Tuition Academy</h3>
-          <p class="work-card-desc">Multi-class academy site with course catalog, faculty profiles, and online inquiries.</p>
-          <span class="work-card-link">View live demo <span class="arrow">→</span></span>
-        </div>
-      </a>
-
-      <a href="mailto:yugeshr601@gmail.com?subject=I%27d%20like%20a%20custom%20project" class="work-card small reveal" style="background: var(--butter); border-color: var(--ink); align-items: center; justify-content: center;">
-        <div style="padding: 2rem; text-align: center;">
-          <div style="font-family: 'Instrument Serif', serif; font-style: italic; font-size: 2.2rem; line-height: 1.05; color: var(--ink); margin-bottom: 0.6rem;">Want something<br>different?</div>
-          <div style="font-size: 0.85rem; color: var(--ink-soft); font-weight: 500;">Let's talk →</div>
-        </div>
-      </a>
+    <div class="glass-card p-10 rounded-3xl">
+      <h3 class="font-headline-md text-2xl mb-4 text-secondary">Based in</h3>
+      <p class="text-on-surface-variant mb-2">Karachi, Pakistan</p>
+      <p class="text-on-surface-variant text-sm">Working with clients across Pakistan, GCC, and beyond.</p>
     </div>
   </div>
-</section>
 
-<!-- WHAT I DO -->
-<section id="do">
-  <div class="container">
-    <div class="section-head reveal">
-      <div>
-        <span class="section-tag" style="background: var(--pink);">What I do</span>
-        <h2 class="section-title" data-reveal-words>Built for businesses that mean it.</h2>
-      </div>
-      <p class="section-side-text">
-        Four things I do well. Get in touch if any of these sound like what you need.
-      </p>
-    </div>
-
-    <div class="do-list">
-      <div class="do-item reveal">
-        <div class="do-num">01</div>
-        <div class="do-content">
-          <h3>Restaurant ordering systems</h3>
-          <p>Full online ordering websites with menu, cart, checkout, admin dashboard, and kitchen print slips. Your own brand, no Foodpanda commission.</p>
-          <a href="mailto:yugeshr601@gmail.com?subject=Restaurant%20ordering%20system" class="do-link">Get a quote</a>
+  <!-- Right: Form -->
+  <div class="md:col-span-8">
+    <div class="glass-card p-10 md:p-12 rounded-3xl">
+      <form action="mailto:yugeshr601@gmail.com" method="post" enctype="text/plain" class="space-y-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div>
+            <label class="form-label">FULL NAME</label>
+            <input class="form-input" placeholder="Your name" name="name" type="text" required/>
+          </div>
+          <div>
+            <label class="form-label">EMAIL ADDRESS</label>
+            <input class="form-input" placeholder="you@email.com" name="email" type="email" required/>
+          </div>
         </div>
-      </div>
-
-      <div class="do-item reveal">
-        <div class="do-num">02</div>
-        <div class="do-content">
-          <h3>Business websites</h3>
-          <p>Modern websites for clinics, academies, salons, and local businesses. Mobile-optimised, fast, and built around your conversion goals.</p>
-          <a href="mailto:yugeshr601@gmail.com?subject=Business%20website" class="do-link">Get a quote</a>
+        <div>
+          <label class="form-label">INTERESTED IN</label>
+          <div class="flex flex-wrap gap-3 mt-3">
+            <label class="cursor-pointer">
+              <input class="hidden peer" type="checkbox" name="interest_restaurant"/>
+              <span class="checkbox-pill">Restaurant ordering</span>
+            </label>
+            <label class="cursor-pointer">
+              <input class="hidden peer" type="checkbox" name="interest_business"/>
+              <span class="checkbox-pill">Business website</span>
+            </label>
+            <label class="cursor-pointer">
+              <input class="hidden peer" type="checkbox" name="interest_landing"/>
+              <span class="checkbox-pill">Landing page</span>
+            </label>
+            <label class="cursor-pointer">
+              <input class="hidden peer" type="checkbox" name="interest_redesign"/>
+              <span class="checkbox-pill">Redesign</span>
+            </label>
+          </div>
         </div>
-      </div>
-
-      <div class="do-item reveal">
-        <div class="do-num">03</div>
-        <div class="do-content">
-          <h3>Landing pages</h3>
-          <p>High-converting single-page sites for product launches, campaigns, or lead generation. Live in days, not weeks.</p>
-          <a href="mailto:yugeshr601@gmail.com?subject=Landing%20page" class="do-link">Get a quote</a>
+        <div>
+          <label class="form-label">MESSAGE</label>
+          <textarea class="form-input resize-none" placeholder="Tell me about your business and what you need..." rows="4" name="message" required></textarea>
         </div>
-      </div>
-
-      <div class="do-item reveal">
-        <div class="do-num">04</div>
-        <div class="do-content">
-          <h3>Website redesigns</h3>
-          <p>Got an outdated site? I'll redesign it from scratch with modern visuals, better performance, and a feel that actually represents your brand.</p>
-          <a href="mailto:yugeshr601@gmail.com?subject=Website%20redesign" class="do-link">Get a quote</a>
+        <div class="flex justify-end pt-4">
+          <button type="submit" class="magnetic-button bg-primary text-on-primary px-12 py-5 rounded-full font-headline-md text-xl flex items-center gap-3 group font-semibold">
+            Send Message
+            <span class="material-symbols-outlined group-hover:translate-x-2 transition-transform">arrow_forward</span>
+          </button>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="container">
-    <div class="contact-card reveal">
-      <h2 class="contact-h">Let's build something <span class="ital">great</span>.</h2>
-      <p class="contact-sub">Have a project in mind? Send a message and I'll get back within 24 hours.</p>
-      <a href="mailto:yugeshr601@gmail.com" class="btn-contact btn-magnetic">
-        Say hello →
-      </a>
-      <span class="contact-email">yugeshr601@gmail.com</span>
+      </form>
     </div>
   </div>
 </section>
 
 </main>
 
-<footer>
-  <div class="container">
-    <div class="footer-flex">
-      <a href="#" class="footer-logo">
-        <svg class="logo-svg"><use href="#yugh-logo"/></svg>
-        <span>Yugh <em>Studio</em></span>
-      </a>
-      <span class="footer-year">© 2026</span>
+<!-- ════════ FOOTER ════════ -->
+<footer class="w-full rounded-t-3xl bg-inverse-surface text-inverse-on-surface mt-24 overflow-hidden relative">
+  <div class="absolute inset-0 bg-gradient-to-t from-inverse-surface to-[#4a3f37] opacity-90 -z-0"></div>
+  <div class="relative z-10 max-w-container-max mx-auto px-6 md:px-margin-desktop py-16">
+    <div class="flex flex-col md:flex-row justify-between items-start gap-12 mb-12">
+      <div class="flex flex-col gap-4 max-w-xs">
+        <a href="#top" class="flex items-center gap-3">
+          <svg class="w-10 h-10"><use href="#yugh-logo"/></svg>
+          <span class="font-display-lg text-[28px] font-bold tracking-tight text-primary-fixed">
+            Yugh <span class="font-accent-italic italic">Studio</span>
+          </span>
+        </a>
+        <p class="font-body-md text-body-md opacity-70">
+          Modern websites for restaurants, businesses, and creators in Karachi.
+        </p>
+      </div>
+      <div class="flex flex-col md:flex-row gap-12">
+        <div class="flex flex-col gap-3">
+          <h5 class="font-label-caps opacity-50 mb-2">EXPLORE</h5>
+          <a class="opacity-70 hover:opacity-100 hover:text-primary-fixed-dim transition-all" href="#work">Selected work</a>
+          <a class="opacity-70 hover:opacity-100 hover:text-primary-fixed-dim transition-all" href="#studio">Studio</a>
+          <a class="opacity-70 hover:opacity-100 hover:text-primary-fixed-dim transition-all" href="#process">Process</a>
+          <a class="opacity-70 hover:opacity-100 hover:text-primary-fixed-dim transition-all" href="#contact">Contact</a>
+        </div>
+        <div class="flex flex-col gap-3">
+          <h5 class="font-label-caps opacity-50 mb-2">CONTACT</h5>
+          <a class="opacity-70 hover:opacity-100 hover:text-primary-fixed-dim transition-all" href="mailto:yugeshr601@gmail.com">yugeshr601@gmail.com</a>
+          <span class="opacity-70">Karachi, Pakistan</span>
+        </div>
+      </div>
+    </div>
+    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm opacity-50">
+      <span>© 2026 Yugh Studio</span>
+      <span class="flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">place</span>
+        Karachi, Pakistan
+      </span>
     </div>
   </div>
 </footer>
@@ -1387,41 +791,11 @@ footer {
   window.addEventListener('scroll', updateScrollProgress, { passive: true });
   updateScrollProgress();
 
-  // ─── STICKER PARALLAX ───
-  const stickers = document.querySelectorAll('.sticker');
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    lastScroll = window.scrollY;
-    stickers.forEach((s, i) => {
-      const speed = 0.2 + (i * 0.1);
-      s.style.transform = `translateY(${-lastScroll * speed}px)`;
-    });
-  }, { passive: true });
-
-  // ─── 3D CARD TILT ON HOVER ───
-  if (window.matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll('.tilt-card').forEach(card => {
-      card.addEventListener('mousemove', (e) => {
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        const rotateX = ((y - centerY) / centerY) * -6;
-        const rotateY = ((x - centerX) / centerX) * 8;
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px)`;
-      });
-      card.addEventListener('mouseleave', () => {
-        card.style.transform = '';
-      });
-    });
-  }
-
   // ─── SMOOTH SCROLL ───
   document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+    anchor.addEventListener('click', function(e) {
       const href = this.getAttribute('href');
-      if (href === '#') {
+      if (href === '#' || href === '#top') {
         e.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
         return;
@@ -1447,80 +821,25 @@ footer {
   const countObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
-      const el = entry.target;
+      const el = entry.target.querySelector('[data-count]');
+      if (!el) return;
       const target = parseInt(el.dataset.count, 10);
       const suffix = el.dataset.suffix || '';
-      const duration = 1600; // ms
+      const duration = 1600;
       const startTime = performance.now();
-      
       function tick(now) {
         const elapsed = now - startTime;
         const progress = Math.min(elapsed / duration, 1);
-        // ease-out cubic
         const eased = 1 - Math.pow(1 - progress, 3);
         const current = Math.round(eased * target);
-        el.innerHTML = current + '<span class="suffix">' + suffix + '</span>';
+        el.textContent = current + suffix;
         if (progress < 1) requestAnimationFrame(tick);
       }
       requestAnimationFrame(tick);
-      countObserver.unobserve(el);
+      countObserver.unobserve(entry.target);
     });
   }, { threshold: 0.4 });
-  document.querySelectorAll('.stat-number[data-count]').forEach(el => countObserver.observe(el));
-
-  // ─── SCROLL TEXT REVEAL — split section titles into words ───
-  document.querySelectorAll('[data-reveal-words]').forEach(el => {
-    const text = el.textContent;
-    el.innerHTML = '';
-    text.split(' ').forEach((word, i) => {
-      const wrap = document.createElement('span');
-      wrap.className = 'reveal-word';
-      const inner = document.createElement('span');
-      inner.textContent = word + ' ';
-      inner.style.transitionDelay = (i * 60) + 'ms';
-      wrap.appendChild(inner);
-      el.appendChild(wrap);
-    });
-  });
-  const wordRevealObserver = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('reveal-active');
-        wordRevealObserver.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.2 });
-  document.querySelectorAll('[data-reveal-words]').forEach(el => wordRevealObserver.observe(el));
-
-  // ─── MAGNETIC BUTTONS ───
-  if (window.matchMedia('(hover: hover)').matches) {
-    document.querySelectorAll('.btn-magnetic').forEach(btn => {
-      btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        const strength = 0.3;
-        btn.style.transform = `translate(${x * strength}px, ${y * strength}px)`;
-      });
-      btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0, 0)';
-      });
-    });
-  }
-
-  // ─── SPLINE FALLBACK ───
-  // If Spline fails to load (slow network, blocked), keep the CSS shapes visible.
-  // If it loads successfully, fade out the CSS shapes.
-  window.addEventListener('load', () => {
-    setTimeout(() => {
-      const spline = document.querySelector('spline-viewer');
-      const fallback = document.getElementById('heroFallback');
-      if (spline && fallback) {
-        // Check if spline has loaded by inspecting its shadowRoot or just trust the timer
-        fallback.classList.add('hide');
-      }
-    }, 2000);
-  });
+  document.querySelectorAll('.stat-card').forEach(el => countObserver.observe(el));
 </script>
 
 </body>
